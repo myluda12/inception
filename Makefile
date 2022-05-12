@@ -1,12 +1,14 @@
 DOCKER_COMPOSE_FILE = srcs/docker-compose.yml
 
-all : build
+all : up
 
-build : docker-compose -f ${DOCKER_COMPOSE_FILE} build
+up :
+	mkdir -p /home/ayajrhou/data/wordpress
+	mkdir -p /home/ayajrhou/data/mariadb
+	docker-compose -f ${DOCKER_COMPOSE_FILE} up --build -d
 
-up : docker-compose -f ${DOCKER_COMPOSE_FILE} up
-
-down : docker-compose -f ${DOCKER_COMPOSE_FILE} down --volumes
+down : 
+	docker-compose -f ${DOCKER_COMPOSE_FILE} down --volumes
 
 clean : down 
 	docker system prune -a -f
