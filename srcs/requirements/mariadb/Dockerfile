@@ -8,7 +8,7 @@ RUN apt-get install mariadb-server -y
 
 RUN sed -i 's/127.0.0.1/0.0.0.0/g' /etc/mysql/mariadb.conf.d/50-server.cnf
 
-ADD db/wordpress.sql .
+ADD conf/wordpress.sql .
 
 ENTRYPOINT  service mysql start \
 			; mysqlshow | grep $DB_NAME || \
